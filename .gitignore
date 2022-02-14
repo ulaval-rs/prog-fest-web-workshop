@@ -1,0 +1,10 @@
+*
+
+!.gitignore
+!requirements.txt
+!app.py
+
+!wep_app/
+!wep_app/**
+
+*.pyc
