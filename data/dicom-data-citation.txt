@@ -1,0 +1,52 @@
+
+TY  - JOUR
+AU  - Nelms, Benjamin
+AU  - Stambaugh, Cassandra
+AU  - Hunt, Dylan
+AU  - Tonner, Brian
+AU  - Zhang, Geoffrey
+AU  - Feygelman, Vladimir
+TI  - Methods, software and datasets to verify DVH calculations against analytical values: Twenty years late(r)
+JO  - Medical Physics
+JA  - Med. Phys.
+VL  - 42
+IS  - 8
+SN  - 0094-2405
+UR  - https://doi.org/10.1118/1.4923175
+DO  - https://doi.org/10.1118/1.4923175
+SP  - 4435
+EP  - 4448
+KW  - cancer
+KW  - computerised tomography
+KW  - dosimetry
+KW  - image resolution
+KW  - medical image processing
+KW  - quality assurance
+KW  - statistical analysis
+KW  - tumours
+KW  - Computed tomography
+KW  - Cancer
+KW  - Dose-volume analysis
+KW  - Spatial resolution
+KW  - Computerised tomographs
+KW  - Biological material, e.g. blood, urine; Haemocytometers
+KW  - Digital computing or data processing equipment or methods, specially adapted for specific applications
+KW  - Image data processing or generation, in general
+KW  - Scintigraphy
+KW  - dose volume histograms
+KW  - quality assurance
+KW  - software
+KW  - external beam
+KW  - Computer software
+KW  - Dosimetry
+KW  - Interpolation
+KW  - Error analysis
+KW  - Data analysis
+KW  - Surface structure
+KW  - Testing procedures
+KW  - Statistical analysis
+KW  - Interface structure
+KW  - Spatial resolution
+PY  - 2015
+AB  - Purpose: The authors designed data, methods, and metrics that can serve as a standard, independent of any software package, to evaluate dose-volume histogram (DVH) calculation accuracy and detect limitations. The authors use simple geometrical objects at different orientations combined with dose grids of varying spatial resolution with linear 1D dose gradients; when combined, ground truth DVH curves can be calculated analytically in closed form to serve as the absolute standards. Methods: dicom RT structure sets containing a small sphere, cylinder, and cone were created programmatically with axial plane spacing varying from 0.2 to 3 mm. Cylinders and cones were modeled in two different orientations with respect to the IEC 1217 Y axis. The contours were designed to stringently but methodically test voxelation methods required for DVH. Synthetic RT dose files were generated with 1D linear dose gradient and with grid resolution varying from 0.4 to 3 mm. Two commercial DVH algorithms?pinnacle (Philips Radiation Oncology Systems) and PlanIQ (Sun Nuclear Corp.)?were tested against analytical values using custom, noncommercial analysis software. In Test 1, axial contour spacing was constant at 0.2 mm while dose grid resolution varied. In Tests 2 and 3, the dose grid resolution was matched to varying subsampled axial contours with spacing of 1, 2, and 3 mm, and difference analysis and metrics were employed: (1) histograms of the accuracy of various DVH parameters (total volume, Dmax, Dmin, and doses to % volume: D99, D95, D5, D1, D0.03 cm3) and (2) volume errors extracted along the DVH curves were generated and summarized in tabular and graphical forms. Results: In Test 1, pinnacle produced 52 deviations (15%) while PlanIQ produced 5 (1.5%). In Test 2, pinnacle and PlanIQ differed from analytical by >3% in 93 (36%) and 18 (7%) times, respectively. Excluding Dmin and Dmax as least clinically relevant would result in 32 (15%) vs 5 (2%) scored deviations for pinnacle vs PlanIQ in Test 1, while Test 2 would yield 53 (25%) vs 17 (8%). In Test 3, statistical analyses of volume errors extracted continuously along the curves show pinnacle to have more errors and higher variability (relative to PlanIQ), primarily due to pinnacle?s lack of sufficient 3D grid supersampling. Another major driver for pinnacle errors is an inconsistency in implementation of the ?end-capping?; the additional volume resulting from expanding superior and inferior contours halfway to the next slice is included in the total volume calculation, but dose voxels in this expanded volume are excluded from the DVH. PlanIQ had fewer deviations, and most were associated with a rotated cylinder modeled by rectangular axial contours; for coarser axial spacing, the limited number of cross-sectional rectangles hinders the ability to render the true structure volume. Conclusions: The method is applicable to any DVH-calculating software capable of importing dicom RT structure set and dose objects (the authors? examples are available for download). It includes a collection of tests that probe the design of the DVH algorithm, measure its accuracy, and identify failure modes. Merits and applicability of each test are discussed.
+ER  - 
