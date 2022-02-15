@@ -14,14 +14,14 @@ parser.add_argument('token', type=str, help='Votre token')
 
 # Services
 token_service = services.TokenService(constants.TOKEN_PREFIX)
-account_service = services.AccountService(token_service)
+authentication_service = services.AuthenticationService(token_service)
 
 # Resources
 api.add_resource(resources.HelloResource, '/')
 api.add_resource(
-    resources.AccountResource,
-    '/account',
-    resource_class_kwargs={'parser': parser, 'account_service': account_service}
+    resources.AuthenticationResource,
+    '/auth',
+    resource_class_kwargs={'parser': parser, 'authentication_service': authentication_service}
 )
 
 if __name__ == '__main__':

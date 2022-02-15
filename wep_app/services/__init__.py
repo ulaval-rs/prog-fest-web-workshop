@@ -1,7 +1,7 @@
-from .account import AccountService
+from .authentication import AuthenticationService
 from .token import TokenService
 
 __all__ = [
-    'AccountService',
+    'AuthenticationService',
     'TokenService',
 ]

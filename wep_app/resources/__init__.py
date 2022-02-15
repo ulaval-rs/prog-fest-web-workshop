@@ -1,7 +1,7 @@
 from .hello import HelloResource
-from .account import AccountResource
+from .authentication import AuthenticationResource
 
 __all__ = [
     'HelloResource',
-    'AccountResource'
+    'AuthenticationResource'
 ]
