@@ -4,6 +4,12 @@
 !requirements.txt
 !app.py
 
+!data/
+!data/**
+
+!tests/
+!tests/**
+
 !wep_app/
 !wep_app/**
 
