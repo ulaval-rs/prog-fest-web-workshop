@@ -6,12 +6,11 @@ class AuthenticationService:
     def __init__(self, token_service: TokenService):
         self.token_service = token_service
 
-    def authenticate(self, idul: str):
-        # pseudo token creation
+    def authenticate(self, idul: str) -> str:
         return self.token_service.make_token(idul)
 
-    def retrieve_token(self, idul: str):
-        return self.token_service.make_token(idul)
+    def is_authorized(self, token: str) -> bool:
+        return self.token_service.is_token_valid(token)
 
     def is_idul_valid(self, idul: str) -> bool:
         try:

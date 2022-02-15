@@ -4,9 +4,6 @@
 !requirements.txt
 !app.py
 
-!data/
-!data/**
-
 !tests/
 !tests/**
 
