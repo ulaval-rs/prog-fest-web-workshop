@@ -1,10 +1,7 @@
-from .resource import APIResource
+from flask_restful import Resource
 
 
-class HelloResource(APIResource):
-
-    def __init__(self):
-        pass
+class HelloResource(Resource):
 
     def get(self):
         return {'message': "Bonjour et bienvenue au workshop sur le Web!"}
