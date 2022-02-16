@@ -25,6 +25,7 @@ api.add_resource(
     '/auth',
     resource_class_kwargs={'parser': parser, 'authentication_service': authentication_service}
 )
+api.add_resource(resources.AvailableDataResource, '/data')
 api.add_resource(
     resources.DataResource,
     '/data/<data_type>',

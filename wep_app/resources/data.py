@@ -7,11 +7,8 @@ from ..services.authentication import AuthenticationService
 
 class AvailableDataResource(Resource):
 
-    def __init__(self,
-                 parser: RequestParser,
-                 authentication_service: AuthenticationService,
-                 data_service: DataService):
-        pass
+    def get(self):
+        return ['structure', 'dose']
 
 
 class DataResource(Resource):

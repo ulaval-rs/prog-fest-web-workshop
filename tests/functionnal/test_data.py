@@ -6,6 +6,13 @@ from .constants import URL
 TOKEN = 'e2a2f3d81a0de2ba37bb821c9e16c7960e21cf84'
 
 
+def test_retrieve_available_data():
+    result = requests.get(f'{URL}/data', params={'token': TOKEN})
+
+    assert result.status_code == 200
+    assert result.json() == ['structure', 'dose']
+
+
 def test_retrieve_structure():
     result = requests.get(f'{URL}/data/structure', params={'token': TOKEN})
 
