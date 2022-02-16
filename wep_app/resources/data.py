@@ -25,9 +25,6 @@ class DataResource(Resource):
         self.data_service = data_service
 
     def get(self, data_type):
-        if data_type not in ('structure', 'dose'):
-            return {'error': f'Must provide data type ("structure" or "dose"). "{data_type}" was provided'}, 400
-
         args = self.parser.parse_args()
         token = args['token']
 
@@ -40,4 +37,7 @@ class DataResource(Resource):
         if data_type == 'dose':
             return self.data_service.retrieve_dose()
 
-        raise NotImplementedError
+        if data_type == 'structure':
+            return self.data_service.retrieve_structure()
+
+        return {'error': f'Data type "{data_type}" not found. Accepted data type are ("structure" or "dose").'}, 404

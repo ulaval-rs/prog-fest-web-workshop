@@ -8,3 +8,6 @@ class DataService:
 
     def retrieve_dose(self):
         return send_file(f'{self.data_path}/rtdose.dcm')
+
+    def retrieve_structure(self):
+        return send_file(f'{self.data_path}/rtstruct-sphere.dcm')
