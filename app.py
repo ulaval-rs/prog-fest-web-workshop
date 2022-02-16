@@ -1,10 +1,16 @@
 from flask import Flask
 from flask_restful import Api, reqparse
+from flasgger import Swagger
 
 from wep_app import resources, services, constants
 
 app = Flask(__name__)
 api = Api(app)
+app.config['SWAGGER'] = {
+    'title': 'Atelier REST API',
+    'uiversion': 2
+}
+swag = Swagger(app)
 
 parser = reqparse.RequestParser()
 parser.add_argument('idul', type=str, help='Votre IDUL')

@@ -8,6 +8,15 @@ from ..services.authentication import AuthenticationService
 class AvailableDataResource(Resource):
 
     def get(self):
+        """
+        ---
+        tags:
+            - Données
+        responses:
+            200:
+                description: Types de données possibles
+                type: Array
+        """
         return ['structure', 'dose']
 
 
@@ -22,6 +31,26 @@ class DataResource(Resource):
         self.data_service = data_service
 
     def get(self, data_type):
+        """
+        ---
+        tags:
+            - Données
+        parameters:
+            - in: token
+              required: true
+            - in: data_type
+              required: true
+        responses:
+            200:
+                description: Retourne le fichier en octets (bytes)
+            400:
+                description: Token absent
+            401:
+                description: Accès refusé
+            404:
+                description: Type de données non trouvé
+
+        """
         args = self.parser.parse_args()
         token = args['token']
 

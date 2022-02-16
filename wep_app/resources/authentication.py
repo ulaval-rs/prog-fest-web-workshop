@@ -11,6 +11,21 @@ class AuthenticationResource(Resource):
         self.authentication_service = authentication_service
 
     def post(self):
+        """
+        Authenticate
+        ---
+        tags:
+            - Auth
+        parameters:
+        - in: idul
+          name: idul
+          required: true
+        responses:
+            201:
+                description: Authentifié
+            400:
+                description: IDUL invalide ou non fournie
+        """
         args = self.parser.parse_args()
 
         if not args['idul']:
