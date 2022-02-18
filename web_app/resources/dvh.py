@@ -14,20 +14,30 @@ class DvhResource(Resource):
         ---
         tags:
             - Dose
-        parameters:
-            - in file_dose
-              name: Fichier DICOM RTDose
-              required: true
-              type: application/dicom
-            - in file_struct
-              name: Fichier DICOM RTStruct
-              required: true
-              type: application/dicom
+        requestBody:
+            content:
+                multipart/form-data:
+                    schema:
+                        type: object
+                        properties:
+                            file_dose:
+                                type: string
+                                format: binary
+                            file_struct:
+                                type: string
+                                format: binary
         response:
             200:
                 description: DVH
-                schema:
-                    array
+                type: object
+                properties:
+                    name: string
+                    type: string
+                    volume: number
+                    dose_units: string
+                    doses: array
+                    volume_units: string
+                    volumes: array
         """
         if 'file_dose' not in request.files or 'file_struct' not in request.files:
             return {'error': '"file_dose" or "file_struct" not provided'}, 400
