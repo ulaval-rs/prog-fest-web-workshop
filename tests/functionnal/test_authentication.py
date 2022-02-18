@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-from wep_app import constants
+from web_app import constants
 from .constants import URL
 
 

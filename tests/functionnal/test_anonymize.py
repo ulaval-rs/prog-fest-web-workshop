@@ -8,7 +8,7 @@ from tests.functionnal.constants import URL
 
 @pytest.fixture
 def dicom_file():
-    with open('./wep_app/data/rtdose.dcm', 'rb') as file:
+    with open('./web_app/data/rtdose.dcm', 'rb') as file:
         return file.read()
 
 

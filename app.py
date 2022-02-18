@@ -1,9 +1,8 @@
-import werkzeug
 from flask import Flask
 from flask_restful import Api, reqparse
 from flasgger import Swagger
 
-from wep_app import resources, services, constants
+from web_app import resources, services, constants
 
 app = Flask(__name__)
 api = Api(app)
@@ -49,6 +48,11 @@ api.add_resource(
         'anonymization_service': anonymization_service
     }
 )
+api.add_resource(
+    resources.DvhResource,
+    '/dvh',
+    resource_class_kwargs={}
+)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

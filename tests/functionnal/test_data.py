@@ -17,7 +17,7 @@ def test_retrieve_structure():
     result = requests.get(f'{URL}/data/structure', params={'token': TOKEN})
 
     assert result.status_code == 200
-    with open('wep_app/data/rtstruct-sphere.dcm', 'rb') as file:
+    with open('web_app/data/rtstruct-sphere.dcm', 'rb') as file:
         assert result.content == file.read()
 
 
@@ -25,7 +25,7 @@ def test_retrieve_dose():
     result = requests.get(f'{URL}/data/dose', params={'token': TOKEN})
 
     assert result.status_code == 200
-    with open('wep_app/data/rtdose.dcm', 'rb') as file:
+    with open('web_app/data/rtdose.dcm', 'rb') as file:
         assert result.content == file.read()
 
 

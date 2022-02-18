@@ -1,13 +1,10 @@
-import io
-
-import pydicom
 from flask import request, send_file
 from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
 from pydicom.errors import InvalidDicomError
-from pydicom.filebase import DicomBytesIO, DicomFileLike
 
-from wep_app import services
+from web_app import services
+from web_app.resources import util
 
 
 class AnonymizationResource(Resource):
@@ -23,10 +20,10 @@ class AnonymizationResource(Resource):
         tags:
             - Anonimisation
         parameters:
-        - in: file
-          name: Fichier DICOM
-          required: true
-          type: application/dicom
+            - in: file
+              name: Fichier DICOM
+              required: true
+              type: application/dicom
         responses:
             200:
                 description: Anonymisé avec succès
@@ -38,19 +35,15 @@ class AnonymizationResource(Resource):
         if 'file' not in request.files:
             return {'error': 'File not provided'}, 400
 
-        file = request.files['file'].read()
+        file_bytes = request.files['file'].read()
 
-        dicom_bytes = DicomBytesIO(file)
         try:
-            ds = pydicom.dcmread(dicom_bytes)
+            ds = util.read_dicom_dataset(file_bytes)
         except InvalidDicomError:
             return {'error': 'Invalid DICOM file'}, 400
 
         ds = self.anonymization_service.anonymize(ds)
 
-        buffer = io.BytesIO()
-        memory_dataset = DicomFileLike(buffer)
-        pydicom.dcmwrite(memory_dataset, ds)
-        memory_dataset.seek(0)
+        dicom_bytes_io = util.dicom_dataset_to_bytes(ds)
 
-        return send_file(buffer, mimetype='application/dicom')
+        return send_file(dicom_bytes_io, mimetype='application/dicom')

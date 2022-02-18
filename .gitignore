@@ -7,7 +7,7 @@
 !tests/
 !tests/**
 
-!wep_app/
-!wep_app/**
+!web_app/
+!web_app/**
 
 *.pyc
