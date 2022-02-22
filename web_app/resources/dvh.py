@@ -65,6 +65,9 @@ class DvhResource(Resource):
         for roi in rtstruct.StructureSetROISequence:
             dvh = dvhcalc.get_dvh(rtstruct, rtdose, roi.ROINumber)
 
+            if len(dvh.bins) != len(dvh.counts):
+                dvh.bins = dvh.bins[:-abs(len(dvh.bins) - len(dvh.counts))]
+
             dvhs.append({
                 'name': dvh.name,
                 'type': dvh.dvh_type,
