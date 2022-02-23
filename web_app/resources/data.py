@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
 
 from ..services.data import DataService
-from ..services.authentication import AuthenticationService
+from ..services.account import AccountService
 
 
 class AvailableDataResource(Resource):
@@ -24,10 +24,10 @@ class DataResource(Resource):
 
     def __init__(self,
                  parser: RequestParser,
-                 authentication_service: AuthenticationService,
+                 account_service: AccountService,
                  data_service: DataService):
         self.parser = parser
-        self.auth_service = authentication_service
+        self.account_service = account_service
         self.data_service = data_service
 
     def get(self, data_type):
@@ -57,7 +57,7 @@ class DataResource(Resource):
         if not token:
             return {'error': 'Token not provided'}, 400
 
-        if not self.auth_service.is_authorized(token):
+        if not self.account_service.is_authorized(token):
             return {'error': 'Not authorized'}, 401
 
         if data_type == 'dose':

@@ -1,13 +1,19 @@
 from flask import send_file
 
+from web_app.dao import Dao
+
 
 class DataService:
 
-    def __init__(self, data_path: str):
-        self.data_path = data_path
+    def __init__(self, dao: Dao):
+        self.dao = dao
 
     def retrieve_dose(self):
-        return send_file(f'{self.data_path}/rtdose.dcm')
+        dose_path = self.dao.retrieve_path('rtdose')
 
-    def retrieve_structure(self):
-        return send_file(f'{self.data_path}/rtstruct-sphere.dcm')
+        return send_file(dose_path)
+
+    def retrieve_structure(self, structure: str = 'rtstruct-sphere'):
+        structure_path = self.dao.retrieve_path(structure)
+
+        return send_file(structure_path)

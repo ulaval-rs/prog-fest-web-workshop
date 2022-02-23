@@ -8,7 +8,7 @@ from .constants import URL
 def test_auth():
     result = requests.post(f'{URL}/auth', data={'idul': 'gacou42'})
 
-    assert result.status_code == 201
+    assert result.status_code == 200
     assert 'token' in result.json()
     assert constants.TOKEN_PREFIX in result.json()['token']
 
@@ -17,9 +17,9 @@ def test_auth():
 def test_auth_with_bad_idul(idul):
     result = requests.post(f'{URL}/auth', data={'idul': idul})
 
-    assert result.status_code == 400
+    assert result.status_code == 404
     assert 'error' in result.json()
-    assert result.json()['error'] == f'Bad IDUL: "{idul}"'
+    assert result.json()['error'] == f'No account "{idul}".'
 
 
 def test_auth_without_idul():

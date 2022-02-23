@@ -1,11 +1,11 @@
 from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
 
-from ..services import AccountService
-from ..services.account import UserDoesNotExistError
+from web_app.services import AccountService
+from web_app.services.account import UserExistsError
 
 
-class AuthenticationResource(Resource):
+class AccountResource(Resource):
 
     def __init__(self, parser: RequestParser, account_service: AccountService):
         self.parser = parser
@@ -13,7 +13,7 @@ class AuthenticationResource(Resource):
 
     def post(self):
         """
-        Authenticate
+        Create account
         ---
         tags:
             - Compte
@@ -33,9 +33,12 @@ class AuthenticationResource(Resource):
         if not idul:
             return {'error': 'IDUL not provided'}, 400
 
-        try:
-            token = self.account_service.retrieve_token(idul)
-        except UserDoesNotExistError:
-            return {'error': f'No account "{idul}".'}, 404
+        if not self.account_service.is_idul_valid(idul):
+            return {'error': f'Bad IDUL: "{idul}"'}, 400
 
-        return {'token': token}, 200
+        try:
+            self.account_service.add_user(idul)
+        except UserExistsError:
+            return {'error': f'"{idul}" user already exits'}, 409
+
+        return {'message': 'created'}, 201
