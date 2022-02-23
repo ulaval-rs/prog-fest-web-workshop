@@ -4,6 +4,7 @@ from .authentication import AuthenticationResource
 from .account import AccountResource
 from .anonymization import AnonymizationResource
 from .dvh import DvhResource
+from .admin import AdminResource
 
 __all__ = [
     'AvailableDataResource',
@@ -12,4 +13,5 @@ __all__ = [
     'AuthenticationResource',
     'AccountResource',
     'DvhResource',
+    'AdminResource',
 ]

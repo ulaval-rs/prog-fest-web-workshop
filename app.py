@@ -25,6 +25,7 @@ token_service = services.TokenService(constants.TOKEN_PREFIX)
 account_service = services.AccountService(dao, token_service)
 data_service = services.DataService(dao)
 anonymization_service = services.AnonymizationService()
+admin_service = services.AdminService(dao, token_service)
 
 # Resources
 api.add_resource(resources.HelloResource, '/')
@@ -49,6 +50,11 @@ api.add_resource(
     resources.AnonymizationResource,
     '/anonymize',
     resource_class_kwargs={'parser': parser, 'anonymization_service': anonymization_service}
+)
+api.add_resource(
+    resources.AdminResource,
+    '/admin/reset',
+    resource_class_kwargs={'parser': parser, 'admin_service': admin_service}
 )
 
 if __name__ == '__main__':

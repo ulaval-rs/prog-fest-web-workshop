@@ -20,3 +20,6 @@ class Dao:
 
             key, _ = filename.split('.')
             self._data[key] = path
+
+    def reset_users(self):
+        self.users = {}
