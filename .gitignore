@@ -2,6 +2,8 @@
 
 !.gitignore
 !requirements.txt
+!atelier.ipynb
+!presentation-atelier-solution.ipynb
 !app.py
 
 !tests/
