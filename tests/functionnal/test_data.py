@@ -10,11 +10,11 @@ def test_retrieve_available_data():
     result = requests.get(f'{URL}/data', params={'token': TOKEN})
 
     assert result.status_code == 200
-    assert result.json() == ['structure', 'dose']
+    assert result.json() == ['sphere', 'cylinder', 'cone', 'dose']
 
 
 def test_retrieve_structure():
-    result = requests.get(f'{URL}/data/structure', params={'token': TOKEN})
+    result = requests.get(f'{URL}/data/sphere', params={'token': TOKEN})
 
     assert result.status_code == 200
     with open('web_app/data/rtstruct-sphere.dcm', 'rb') as file:

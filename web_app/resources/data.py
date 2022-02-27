@@ -17,7 +17,7 @@ class AvailableDataResource(Resource):
                 description: Types de données possibles
                 type: Array
         """
-        return ['structure', 'dose']
+        return ['sphere', 'cylinder', 'cone', 'dose']
 
 
 class DataResource(Resource):
@@ -62,8 +62,11 @@ class DataResource(Resource):
 
         if data_type == 'dose':
             return self.data_service.retrieve_dose()
-
-        if data_type == 'structure':
-            return self.data_service.retrieve_structure()
+        if data_type == 'sphere':
+            return self.data_service.retrieve_structure('sphere')
+        if data_type == 'cylinder':
+            return self.data_service.retrieve_structure('cylinder')
+        if data_type == 'cone':
+            return self.data_service.retrieve_structure('cone')
 
         return {'error': f'Data type "{data_type}" not found. Accepted data type are ("structure" or "dose").'}, 404

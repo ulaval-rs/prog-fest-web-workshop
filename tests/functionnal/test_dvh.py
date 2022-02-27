@@ -21,9 +21,9 @@ def test_dvh_calculation(struct, dose):
 
     assert result.status_code == 200
     assert isinstance(result.json(), list)
-    assert result.json()[1]['name'] == 'Sphere_30_0'
+    assert result.json()[1]['name'] == 'Sphere_02_0'
     assert result.json()[1]['type'] == 'cumulative'
-    assert result.json()[1]['volume'] == 6.884999999999999
+    assert result.json()[1]['volume'] == 7.185399999999974
     assert result.json()[1]['volume_units'] == 'cm3'
     assert result.json()[1]['dose_units'] == 'Gy'
 

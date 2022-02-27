@@ -13,7 +13,7 @@ class DataService:
 
         return send_file(dose_path)
 
-    def retrieve_structure(self, structure: str = 'rtstruct-sphere'):
-        structure_path = self.dao.retrieve_path(structure)
+    def retrieve_structure(self, structure: str):
+        structure_path = self.dao.retrieve_path(f'rtstruct-{structure}')
 
         return send_file(structure_path)
