@@ -3,7 +3,7 @@ from .hello import HelloResource
 from .authentication import AuthenticationResource
 from .account import AccountResource
 from .anonymization import AnonymizationResource
-from .dvh import DvhResource
+from .dvh import DvhResource, DvhPlotterResource
 from .admin import AdminResource
 
 __all__ = [
@@ -13,5 +13,6 @@ __all__ = [
     'AuthenticationResource',
     'AccountResource',
     'DvhResource',
+    'DvhPlotterResource',
     'AdminResource',
 ]

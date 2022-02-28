@@ -1,5 +1,9 @@
+import io
+from typing import Dict, List
+
+import matplotlib.pyplot as plt
 from dicompylercore import dvhcalc
-from flask import request
+from flask import request, send_file
 from flask_restful import Resource
 from pydicom.errors import InvalidDicomError
 
@@ -79,3 +83,56 @@ class DvhResource(Resource):
             })
 
         return dvhs, 200
+
+
+class DvhPlotterResource(Resource):
+
+    def post(self):
+        dvhs = request.json['dvhs']
+
+        if not self._is_dvhs_valid(dvhs):
+            return {'error': f'Invalid DVHs'}, 400
+
+        self._make_volume_relative(dvhs)
+
+        for dvh in dvhs:
+            plt.plot(dvh['doses'], dvh['volumes'], label=dvh['name'])
+
+        plt.legend()
+        plt.xlabel(f'Dose [{dvhs[0]["dose_units"]}]')
+        plt.ylabel(f'Volume [{dvhs[0]["volume_units"]}]')
+
+        buffer = io.BytesIO()
+        plt.savefig(buffer, format='png')
+        plt.clf()
+        buffer.seek(0)
+
+        return send_file(buffer, mimetype='image/png')
+
+    def _is_dvhs_valid(self, dvhs: List[Dict]) -> bool:
+        dose_units, volume_units = set(), set()
+
+        if not isinstance(dvhs, list):
+            return False
+
+        for dvh in dvhs:
+            if ('name' not in dvh or 'volumes' not in dvh or 'doses' not in dvh or
+                    'volume_units' not in dvh or 'dose_units' not in dvh):
+                return False
+
+            if len(dvh['volumes']) != len(dvh['doses']):
+                return False
+
+            dose_units.add(dvh['dose_units'])
+            volume_units.add(dvh['volume_units'])
+
+        if len(dose_units) != 1 or len(volume_units) != 1:
+            return False
+
+        return True
+
+    def _make_volume_relative(self, dvhs: List[Dict]):
+        for dvh in dvhs:
+            max_volume = max(dvh['volumes'])
+            dvh['volumes'] = [v / max_volume * 100 for v in dvh['volumes']]
+            dvh['volume_units'] = '%'

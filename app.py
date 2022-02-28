@@ -1,8 +1,8 @@
+from flasgger import Swagger
 from flask import Flask
 from flask_restful import Api, reqparse
-from flasgger import Swagger
 
-from web_app import resources, services, constants
+from web_app import constants, resources, services
 from web_app.dao import Dao
 
 app = Flask(__name__)
@@ -30,6 +30,7 @@ admin_service = services.AdminService(dao, token_service)
 # Resources
 api.add_resource(resources.HelloResource, '/')
 api.add_resource(resources.DvhResource, '/dvh')
+api.add_resource(resources.DvhPlotterResource, '/dvh/plot')
 api.add_resource(resources.AvailableDataResource, '/data')
 api.add_resource(
     resources.AccountResource,
