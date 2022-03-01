@@ -15,4 +15,4 @@ class HelloResource(Resource):
                 schema:
                     message: str
         """
-        return {'message': "Bonjour et bienvenue au workshop sur le Web!"}
+        return {'message': "Bonjour et bienvenue à l'atelier sur les API REST!"}
