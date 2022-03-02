@@ -13,6 +13,9 @@
 !tests/
 !tests/**
 
+!imgs/
+!imgs/**
+
 !web_app/
 !web_app/**
 
