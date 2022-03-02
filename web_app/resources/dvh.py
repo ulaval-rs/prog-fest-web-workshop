@@ -64,25 +64,24 @@ class DvhResource(Resource):
         except InvalidDicomError:
             return {'error': 'Invalid RTStruct file'}, 400
 
-        dvhs = []
+        # Pour les données utilisées dans cet atelier, c'est le ROINumber == 2 qui est utilisée.
+        # Ce n'est pas le cas dans tous les cas.
+        dvh = dvhcalc.get_dvh(rtstruct, rtdose, 2)
 
-        for roi in rtstruct.StructureSetROISequence:
-            dvh = dvhcalc.get_dvh(rtstruct, rtdose, roi.ROINumber)
+        if len(dvh.bins) != len(dvh.counts):
+            dvh.bins = dvh.bins[:-abs(len(dvh.bins) - len(dvh.counts))]
 
-            if len(dvh.bins) != len(dvh.counts):
-                dvh.bins = dvh.bins[:-abs(len(dvh.bins) - len(dvh.counts))]
+        dvh_dict = {
+            'name': dvh.name,
+            'type': dvh.dvh_type,
+            'volume': float(dvh.volume),
+            'dose_units': dvh.dose_units,
+            'doses': [float(i) for i in dvh.bins],
+            'volume_units': dvh.volume_units,
+            'volumes': [float(i) for i in dvh.counts]
+        }
 
-            dvhs.append({
-                'name': dvh.name,
-                'type': dvh.dvh_type,
-                'volume': float(dvh.volume),
-                'dose_units': dvh.dose_units,
-                'doses': [float(i) for i in dvh.bins],
-                'volume_units': dvh.volume_units,
-                'volumes': [float(i) for i in dvh.counts]
-            })
-
-        return dvhs, 200
+        return dvh_dict, 200
 
 
 class DvhPlotterResource(Resource):
