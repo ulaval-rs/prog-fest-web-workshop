@@ -7,10 +7,14 @@
 !presentation-atelier-solution.ipynb
 !app.py
 
+!autres/
+!autres/**
+
 !tests/
 !tests/**
 
 !web_app/
 !web_app/**
 
+.ipynb_checkpoints
 *.pyc
