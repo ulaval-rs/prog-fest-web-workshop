@@ -1,27 +1,19 @@
 *
 
 !.gitignore
-!Dockerfile
-!requirements.txt
 
 !environment.yml
 !README.md
 !atelier.ipynb
 
-!presentation-atelier-solution.ipynb
-!app.py
-
 !autres/
 !autres/**
 
-!tests/
-!tests/**
+!api/
+!api/**
 
 !imgs/
 !imgs/**
-
-!web_app/
-!web_app/**
 
 .ipynb_checkpoints
 *.pyc
