@@ -3,7 +3,11 @@
 !.gitignore
 !Dockerfile
 !requirements.txt
+
+!environment.yml
+!README.md
 !atelier.ipynb
+
 !presentation-atelier-solution.ipynb
 !app.py
 
