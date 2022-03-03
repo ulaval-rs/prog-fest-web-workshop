@@ -5,6 +5,7 @@
 !environment.yml
 !README.md
 !atelier.ipynb
+!util.py
 
 !autres/
 !autres/**
