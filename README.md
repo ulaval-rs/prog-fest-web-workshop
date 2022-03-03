@@ -4,7 +4,7 @@ Afin de suivre cet atelier, vous devrez vous assurer que le notebook `atelier.ip
 
 ### Via Binder (préférable)
 Vous pouvez ouvrir le notebook via Binder, simplement en cliquant sur le badge suivant :
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ulaval-rs/prog-fest-web-workshop/HEAD?labpath=atelier.pynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ulaval-rs/prog-fest-web-workshop/HEAD?labpath=atelier.ipynb)
 
 ### Via jupyter notebook (localement)
 - Cloner le projet 
