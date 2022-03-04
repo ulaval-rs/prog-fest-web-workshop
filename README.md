@@ -2,7 +2,12 @@
 
 Afin de suivre cet atelier, vous devrez vous assurer que le notebook `atelier.ipynb` puisse être ouvert.
 
-### Via Binder (préférable)
+## Via Google Colab (préférable)
+Vous pouvez ouvrir le notebook via Google Colab, simplement en cliquant sur le badge suivant :
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ulaval-rs/prog-fest-web-workshop/blob/main/atelier.ipynb)
+
+
+### Via Binder 
 Vous pouvez ouvrir le notebook via Binder, simplement en cliquant sur le badge suivant :
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ulaval-rs/prog-fest-web-workshop/HEAD?labpath=atelier.ipynb)
 
