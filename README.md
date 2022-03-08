@@ -27,3 +27,21 @@ Vous pouvez ouvrir le notebook via Binder, simplement en cliquant sur le badge s
   ./venv/bin/jupyter notebook
   ```
 - Ouvrir `atelier.ipynb` dans l'interface de jupyter notebook
+
+
+## Démarrer l'API REST localement
+Cloner d'abord le projet et entrer dans celui-ci
+```shell
+git clone https://github.com/ulaval-rs/prog-fest-web-workshop
+cd prog-fest-web-workshop
+```
+Créer un environement virtuel
+```shell
+python -m venv venv
+./venv/bin/pip install -r requirements.txt
+```
+Finalement, démarrez l'application
+```shell
+./venv/bin/python app.py
+```
+L'application est désormais accessible à l'adresse `http://localhost:5000`.
